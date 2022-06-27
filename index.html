@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Web Prakicu
+    </title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <script src="js/moment.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/moment-timezone-with-data.js"></script>
+
+
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%
+        }
+
+        header {
+            position: absolute;
+            width: calc(100% - 120px);
+            top: 5px;
+            left: 70px;
+            z-index: 1000;
+            background: white;
+            opacity: 80%;
+            padding: 0px 10px;
+            margin: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        header h1 {
+
+            padding: 0;
+            margin: 0;
+        }
+
+        header .select {
+            position: absolute;
+            right: 30px;
+            top: 30px
+        }
+
+        /* body{
+        padding: 0;
+        margin: 0;
+    } */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="tittle">
+            <h1>
+                Web Prakicu BMKG
+            </h1>
+            <p>
+                Date : <span class="tanggal"></span>
+            </p>
+        </div>
+        <div class="select">
+            <select name="select-tanggal"></select>
+        </div>
+    </header>
+
+    <div id="map"></div>
+
+
+    <script>
+
+
+        // let map = L.map('map').setView([2.5, 118], 4.5);
+       
+        let mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+        let mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        // let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
+        let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+        let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+        // let markersLayers = new L.LayerGroup();
+        let map = L.map('map', { layers: light }).setView([0, 118.9213], 5);
+        let OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        });
+
+        let baseLayers = {
+            "OSM":OSM,
+            "Light": light,
+            "Dark": dark
+        };
+
+        L.control.layers(baseLayers).addTo(map);
+        let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
+        let markersLayers = new L.LayerGroup();
+        
+
+        // L.control.Layers(baselayer).addTo(map);
+        let utc = 8;
+        let date = new moment();
+        let tanggal = document.querySelector('.tanggal');
+        let selectTanggal = document.querySelector('[name=select-tanggal]');
+        let nextDate;
+        let createSelect = false;
+        let selectOption = [];
+        let kodeCuaca = {
+            '0': ['Cerah', 'CERAH.svg'],
+            '1': ['Cerah Berawan ', 'CERAHBERAWAN.svg'],
+            '2': ['Cerah Berawan ', 'CERAHBERAWAN.svg'],
+            '3': ['Berawan ', 'BERAWAN.svg'],
+            '4': ['Berawan Tebal', 'BERAWAN.svg'],
+            '5': ['Udara Kabur', 'HAZE.svg'],
+            '10': ['Asap', 'FOG.svg'],
+            '45': ['Kabut', 'MIST.svg'],
+            '60': ['Hujan Ringan', 'HUJANRINGAN.svg'],
+            '61': ['Hujan Sedang', 'HUJANSEDANG.svg'],
+            '63': ['Hujan Lebat', 'HUJANLEBAT.svg'],
+            '80': ['Hujan Lokal', 'HUJANRINGAN.svg'],
+            '95': ['Hujan Petir', 'HUJANPETIR.svg'],
+            '97': ['Hujan Petir', 'HUJANPETIR.svg'],
+        };
+
+
+
+
+        // for (i=0;i<3;i++){
+        //     let option = moment(date).add(i,'d').format('D MMMM YYYY');
+        //     let value = moment(date).add(i,'d').format('YYYYMMDD')
+        //     if(value==moment(date).format('YYYYMMDD')){
+        //         value = moment(date).format('YYYY-MM-DD HH');
+        //     }
+        //     else {
+        //         value = moment(data).add(i,'d').format('YYYY-MM-DD')+' 0'+utc;
+        //     }
+        //     let newOption = new Option(option, value);
+        //     selectTanggal.add(newOption,underfined);
+        // }
+
+
+        selectTanggal.addEventListener('change', () => {
+            console.log(selectTanggal.value);
+            getData(selectTanggal.value);
+        });
+
+
+        getData(date);
+        async function getData(dateTime) {
+            markersLayers.clearLayers();
+            dateTime = moment(dateTime).subtract(utc, 'h');
+            let response = await fetch(apiUrl);
+            let xmlString = await response.text();
+            let parse = new DOMParser();
+            let xmlData = parse.parseFromString(xmlString, 'text/xml')
+            let areas = xmlData.querySelectorAll('area')
+            areas.forEach((area) => {
+                let lat = area.getAttribute('latitude')
+                let lon = area.getAttribute('longitude')
+                let prov = area.getAttribute('description')
+                let weathers = area.querySelectorAll('parameter[id="weather"] timerange');
+                let getTime = false;
+                let posPrakiraan;
+
+                let popUp = '<table width="190px">';
+                weathers.forEach((weather, i) => {
+                    let getDateTime = weather.getAttribute('datetime');
+                    let prakiraan = weathers[i].querySelector('value').textContent;
+
+                    if (!selectOption.includes(getDateTime.substring(0, 8))) {
+                        selectOption.push(getDateTime.substring(0, 8));
+                    }
+
+                    if (getDateTime.substring(0, 8) == dateTime.format('YYYYMMDD')) {
+                        popUp += '<tr>' +
+                            '<td>' + convertTime(getDateTime.substring(8)) +
+                            '<td>:</td>' +
+                            '<td><img style="width:40px;float:left" src="' + 'icon/' + kodeCuaca[prakiraan][1] + '"> ' +
+                            '<span style="position:relative;top:10px">' + kodeCuaca[prakiraan][0] + '</span></td>' +
+                            '</tr>';
+                    }
+
+                    if (getDateTime.substring(0, 10) >= dateTime.format('YYYYMMDDHH') && getTime == false) {
+                        posPrakiraan = i;
+                        nextDate = getDateTime;
+                        getTime = true;
+                    }
+                    // console.log(getDateTime);
+                });
+
+                popUp += '</table>';
+
+                let prakiraan = weathers[posPrakiraan].querySelector('value').textContent;
+                let iconUrl = 'icon/' + kodeCuaca[prakiraan][1];
+                let deskripsi = kodeCuaca[prakiraan][0];
+                console.log(prakiraan);
+
+
+                let marker = L.marker([lat, lon], {
+                    icon: L.icon({
+                        iconUrl: iconUrl,
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 40],
+                        popupAnchor: [0, -45]
+                    })
+                }).bindPopup('<strong>Kota ' + prov + '</strong><br>' + parseDate(nextDate) + '<br>Keterangan : ' + deskripsi + popUp);
+                marker.addTo(markersLayers);
+                markersLayers.addTo(map);
+                tanggal.textContent = parseDate(nextDate);
+
+
+                // console.log(area);
+            })
+
+            if (createSelect == false) {
+                selectOption.forEach((getDate) => {
+                    console.log(getDate);
+                    let option = moment(getDate).format('D MMMM YYYY');
+                    let value = moment(getDate).format('YYYYMMDD');
+                    if (value == moment(date).format('YYYYMMDD')) {
+                        value = moment(date).format('YYYY-MM-DD HH');
+                    }
+                    else {
+                        value = moment(getDate).format('YYYY-MM-DD') + ' 0' + utc;
+                    }
+                    let newOption = new Option(option, value);
+                    selectTanggal.add(newOption);
+
+                });
+                selectTanggal.value = moment(date).format('YYYY-MM-DD HH');
+                createSelect = true;
+            }
+
+        }
+
+
+
+        function convertTime(time) {
+            // console.log(time);
+            if (time == '0000') {
+                return 'Pagi';
+            }
+            else if (time == '0600') {
+                return 'Siang';
+            }
+            else if (time == '1200') {
+                return 'Sore';
+            }
+            else if (time == '1800') {
+                return 'Dini Hari';
+            }
+            else {
+                return 'Error';
+            }
+
+        }
+
+        function parseDate(date) {
+            let tahun = date.substr(0, 4);
+            let bulan = date.substr(4, 2);
+            let tanggal = date.substr(6, 2);
+            let jam = date.substr(8, 2);
+            let menit = date.substr(10, 2);
+            let setTanggal = tahun + '-' + bulan + '-' + tanggal + ' ' + jam + ':' + menit + ':00';
+            return moment(setTanggal).add(utc, 'h').format('DD MMMM YYYY HH:mm') + ' WITA';
+
+        }
+
+
+
+// let dataGlobal;
+
+// const getData = async () => {
+//   const response = await fetch("https://signature.bmkg.go.id/api/signature/impact/public/list/2021-06-16T00:00:00.000Z");
+//   const data = await response.json();
+//   dataGlobal = data;
+//   return data;
+// };
+
+// (async () => {
+//   await getData();
+//   console.log(dataGlobal);
+// })();
+
+    </script>
+</body>
+
+
+
+
+
+
+</html>
