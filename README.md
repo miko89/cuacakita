@@ -1,2 +1,2 @@
-# prakicu-indo
+# prakicuindo
 cuaca jakarta
