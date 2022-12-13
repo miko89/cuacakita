@@ -1,0 +1,72 @@
+<html>
+
+<body>
+
+<div id="tes">
+
+    Hello
+</div>
+
+<!-- <script>
+    var url = 'https://signature.bmkg.go.id/api/signature/impact/public/list/2022-10-21T00:00:00.000Z'
+    fetch(url).then(data => { return data.json() } ).then(res => { 
+    
+
+    var text = '2'
+    var response = res.data
+        response.forEach( function(value, index) {
+	        text += value.coordinates + "<br>"
+        } )
+
+console.log(text)
+document.getElementById("tes").innerHTML = text
+
+
+
+} )
+    
+
+    </script> -->
+
+<script>
+var url = 'https://signature.bmkg.go.id/api/signature/impact/public/list/2022-10-21T00:00:00.000Z'
+
+var url2 = 'https://signature.bmkg.go.id/api21/point_req'
+
+var dataPost = {
+"model": "wrfdy_indo",
+"modelrun": "2022-10-20T12:00:00Z",
+"lon": 108.76464843750001,
+"lat": -4.609278084409823,
+"z": 500
+
+}
+fetch( url2, {
+method:'POST',
+body: JSON.stringify(dataPost)
+}).then(data=> { return data.json()}) .then(res =>{
+console.log(res)
+
+} )
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>

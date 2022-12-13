@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Beli roti</title>
+        <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+        <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+        <!-- Load external CSS styles -->
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+        <nav class="navigator">
+                <img width="30" src="https://www.bmkg.go.id/asset/img/logo/logo-bmkg.png" />
+                <div class="title-bmkg">
+                    <div class="title-bmkg-1"> Badan Meteorologi Klimatologi dan Geofisika </div>
+                    <div class="title-bmkg-2"> Cepat, Tepat, dan mudah dipahami</div>
+                </div>
+                <div class="text-right" id="buttons">
+                    <div class="radius-left" id="button-en">en</div>
+                    <div class="radius-right" id="button-id">id</div>
+                </div>
+        </nav>
+        <div class="floatcard">
+                <div>Menu Display</div>
+                <label style="display:flex">
+                    <input type="checkbox" checked id="checkrh" />
+                    <div>Relative Humidity</div>
+                </label>
+                <button id="before">
+                    before
+                </button>
+                <button id="next">
+                    next
+                </button>
+        </div>
+        <div class="webhome" id="map"></div>
+        
+        <!-- Load external JavaScript -->
+        <script src="scripts.js"></script>
+        
+    </body>
+
+</html>
