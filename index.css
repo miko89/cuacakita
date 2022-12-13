@@ -290,6 +290,7 @@ input:checked + .slider
   transition: margin-right .50s;
 }
 
+
 .sidebarin {
   box-sizing: border-box;
   position: absolute;
