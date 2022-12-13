@@ -262,21 +262,21 @@ document.getElementById('kelembaban').addEventListener('change', (event) => {
 })
 
 
-document.getElementById('Indonesia').addEventListener('click', function () {
+document.getElementById('indonesia').addEventListener('click', function () {
     map.fitBounds([
         [94.85204, 7.01763,],
         [140.80078, -11.09217]
     ]);
 });
 
-document.getElementById('Sumatera').addEventListener('click', function () {
+document.getElementById('sumatera').addEventListener('click', function () {
     map.fitBounds([
         [94.81716, 6.23014],
         [108.45703, -6.92643]]
     );
 });
 
-document.getElementById('Kalimantan').addEventListener('click', function () {
+document.getElementById('kalimantan').addEventListener('click', function () {
     map.fitBounds([
         [107.64919, 4.43625],
         [119.00391, -4.34641]]
