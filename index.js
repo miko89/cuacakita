@@ -343,7 +343,7 @@ moment.locale('id')
 
 function update() {
     $('#date_wib').html(moment.utc().add(7, 'hours').format('dddd, Do/MMMM/YYYY, LTS [WIB]'));
-    $('#date_utc').html(moment.utc().format('dddd, Do/MMMM/YYYY, LTS [UTC]'));
+    $('#date_utc').html(moment.utc().format('dddd, Do/MMMM/YYYY, LTS [UT]'));
 }
 
 
