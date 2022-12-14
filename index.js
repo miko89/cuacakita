@@ -45,7 +45,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rr/1000/' + data_d00 + '12/' + data_d01 + '00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rr/1000/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('prec-12', {
@@ -88,7 +88,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/temp/1000/' + data_d00 + '12/' + data_d01 + '00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/temp/1000/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('temp-12', {
@@ -134,7 +134,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rh/850/' + data_d00 + '12/' + data_d01 + '00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rh/850/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('rh-12', {
@@ -176,9 +176,6 @@ map.on('load', function () {
     })
 
 
-    
-
-
     map.addLayer({
         id: "kotkab",
         type: "line",
@@ -201,11 +198,11 @@ document.getElementById('hujan').addEventListener('change', (event) => {
 
     if (event.target.checked) {
         map.setLayoutProperty('prec-00', 'visibility', 'visible')
-
+        
 
     } else {
         map.setLayoutProperty('prec-00', 'visibility', 'none')
-
+       
     }
 
 
@@ -238,11 +235,11 @@ document.getElementById('suhu').addEventListener('change', (event) => {
 
     if (event.target.checked) {
         map.setLayoutProperty('temp-00', 'visibility', 'visible')
-
+        
     } else {
 
         map.setLayoutProperty('temp-00', 'visibility', 'none')
-
+        
     }
 
 
@@ -254,11 +251,11 @@ document.getElementById('kelembaban').addEventListener('change', (event) => {
 
     if (event.target.checked) {
         map.setLayoutProperty('rh-00', 'visibility', 'visible')
-
+       
     } else {
 
         map.setLayoutProperty('rh-00', 'visibility', 'none')
-
+      
     }
 
 
@@ -310,7 +307,7 @@ document.getElementById('kalimantan').addEventListener('click', function () {
 
 moment.locale('id')
 var d0 = moment.utc().add(-1, 'days').add(7, 'hours').format('DD/MM/YYYY');
-var d1 = moment.utc().add(1, 'days').add(7, 'hours').format('DD/MM/YYYY')
+    var d1 = moment.utc().add(1, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d2 = moment.utc().add(2, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d3 = moment.utc().add(3, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d4 = moment.utc().add(4, 'days').add(7, 'hours').format('DD/MM/YYYY')
@@ -319,8 +316,8 @@ var d1 = moment.utc().add(1, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d7 = moment.utc().add(7, 'days').add(7, 'hours').format('DD/MM/YYYY')
 
 
-document.getElementById("date00").innerHTML = d0;
-document.getElementById("date01").innerHTML = d1;
+    document.getElementById("date00").innerHTML = d0;
+    document.getElementById("date01").innerHTML = d1;
 //     document.getElementById("date02").innerHTML = d2;
 //     document.getElementById("date03").innerHTML = d3;
 //     document.getElementById("date04").innerHTML = d4;
@@ -329,14 +326,14 @@ document.getElementById("date01").innerHTML = d1;
 //     document.getElementById("date07").innerHTML = d7;
 
 
-var data_d00 = moment.utc().add(-1, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d01 = moment.utc().add(1, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d02 = moment.utc().add(2, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d03 = moment.utc().add(3, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d04 = moment.utc().add(4, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d05 = moment.utc().add(5, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d06 = moment.utc().add(6, 'days').add(7, 'hours').format('YYYYMMDD');
-var data_d07 = moment.utc().add(7, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d00 = moment.utc().add(-1, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d01 = moment.utc().add(1, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d02 = moment.utc().add(2, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d03 = moment.utc().add(3, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d04 = moment.utc().add(4, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d05 = moment.utc().add(5, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d06 = moment.utc().add(6, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d07 = moment.utc().add(7, 'days').add(7, 'hours').format('YYYYMMDD');
 
 
 
@@ -353,11 +350,11 @@ function update() {
 setInterval(update, 1000);
 
 
-function capture() {
+function capture () {
     html2canvas(document.map).then((canvas) => {
-        let a = document.createElement("a");
-        a.download = "infografis.png";
-        a.href = canvas.toDataURL("image/png");
-        a.click(); // MAY NOT ALWAYS WORK!
+      let a = document.createElement("a");
+      a.download = "infografis.png";
+      a.href = canvas.toDataURL("image/png");
+      a.click(); // MAY NOT ALWAYS WORK!
     });
-}
+  }
