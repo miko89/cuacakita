@@ -306,7 +306,7 @@ document.getElementById('kalimantan').addEventListener('click', function () {
 
 
 moment.locale('id')
-var d0 = moment.utc().add(-1, 'days').add(7, 'hours').format('DD/MM/YYYY');
+var d0 = moment.utc().add(0, 'days').add(7, 'hours').format('DD/MM/YYYY');
 //     var d1 = moment.utc().add(1, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d2 = moment.utc().add(2, 'days').add(7, 'hours').format('DD/MM/YYYY')
 //     var d3 = moment.utc().add(3, 'days').add(7, 'hours').format('DD/MM/YYYY')
@@ -326,7 +326,7 @@ var d0 = moment.utc().add(-1, 'days').add(7, 'hours').format('DD/MM/YYYY');
 //     document.getElementById("date07").innerHTML = d7;
 
 
-    var data_d00 = moment.utc().add(-1, 'days').add(7, 'hours').format('YYYYMMDD');
+    var data_d00 = moment.utc().add(0, 'days').add(7, 'hours').format('YYYYMMDD');
     var data_d01 = moment.utc().add(1, 'days').add(7, 'hours').format('YYYYMMDD');
     var data_d02 = moment.utc().add(2, 'days').add(7, 'hours').format('YYYYMMDD');
     var data_d03 = moment.utc().add(3, 'days').add(7, 'hours').format('YYYYMMDD');
