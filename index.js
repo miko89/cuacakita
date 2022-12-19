@@ -45,7 +45,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rr/1000/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rr/1000/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('prec-12', {
@@ -88,7 +88,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/temp/1000/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/temp/1000/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('temp-12', {
@@ -134,7 +134,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rh/850/'+data_d00+'12/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rh/850/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('rh-12', {
