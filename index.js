@@ -2,11 +2,10 @@
 
 
 var map = new maplibregl.Map({
-    container: 'map',
-    style:
-        'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+    container: 'map', // container id
+    style: 'https://demotiles.maplibre.org/style.json', // URL gaya peta
     center: [118.347879, -2],
-    zoom: 4.5
+zoom: 4.5
 });
 
 var marker = new maplibregl.Marker()
@@ -91,6 +90,7 @@ map.on('load', function () {
             'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/temp/1000/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
+
     map.addSource('temp-12', {
         type: 'raster',
         scheme: "tms",
