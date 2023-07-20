@@ -8,6 +8,7 @@ var map = new maplibregl.Map({
 zoom: 4.5
 });
 
+
 var marker = new maplibregl.Marker()
     .setLngLat([13.550343, 55.665957])
     .addTo(map);
@@ -44,7 +45,7 @@ map.on('load', function () {
         type: 'raster',
         scheme: "tms",
         tiles: [
-            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/rr/1000/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
+            'https://signature.bmkg.go.id/api21/mpl_req/ecmwf/tp24/1000/'+data_d00+'00/'+data_d01+'00/{z}/{x}/{y}.png?ci=1&overlays=contourf'
         ]
     })
     map.addSource('prec-12', {
@@ -61,7 +62,7 @@ map.on('load', function () {
         minzoom: 0,
         maxzoom: 22,
         paint: {
-            "raster-opacity": 1,
+            "raster-opacity": 0.5,
         },
 
     })
@@ -110,7 +111,7 @@ map.on('load', function () {
             visibility: 'none'
         },
         paint: {
-            "raster-opacity": 1,
+            "raster-opacity": 0.5,
         },
 
     })
@@ -156,7 +157,7 @@ map.on('load', function () {
             visibility: 'none'
         },
         paint: {
-            "raster-opacity": 1,
+            "raster-opacity": 0.5,
         },
 
     })
@@ -287,9 +288,9 @@ document.getElementById('kalimantan').addEventListener('click', function () {
 //     fetch(url2).then(data => data.json()).then(res => {
 
 //         res.features.forEach(value => {
-//             // var popup = new maplibregl.Popup({ offset: 25 }).setText(
-//             //     'Provinsi : ' + value.properties.provinsi + ' Kota/Kabupaten : ' + value.properties.kab_kota
-//             // );
+//             var popup = new maplibregl.Popup({ offset: 25 }).setText(
+//                 'Provinsi : ' + value.properties.provinsi + ' Kota/Kabupaten : ' + value.properties.kab_kota
+//             );
 
 //             // create DOM element for the marker
 //             var el = document.createElement('div');
